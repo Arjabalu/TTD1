@@ -1,0 +1,627 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilgrim Survey - Central Reception Office, Tirumala</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 5px;
+            transform: scale(1.2);
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            max-width: 200px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        .specify-input {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            input[type="text"], input[type="number"], select, textarea {
+                font-size: 14px;
+                padding: 6px;
+            }
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            input[type="radio"], input[type="checkbox"] {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Pilgrim Survey - Central Reception Office, Tirumala</h1>
+    <p>Thank you for visiting Tirumala Tirupati Devasthanams. This short survey (3–5 minutes) will help us improve services at the CRO. Your responses are anonymous.</p>
+
+    <form id="surveyForm" name="submit-to-google-sheet">
+        <div class="section">
+            <h2>Section 1: General Details</h2>
+            <label>1. Age</label>
+            <input type="radio" name="age" value="Below 18" required> Below 18<br>
+            <input type="radio" name="age" value="18–24"> 18–24<br>
+            <input type="radio" name="age" value="25–44"> 25–44<br>
+            <input type="radio" name="age" value="45–64"> 45–64<br>
+            <input type="radio" name="age" value="65 and above"> 65 and above<br>
+
+            <label>2. Gender</label>
+            <input type="radio" name="gender" value="Male" required> Male<br>
+            <input type="radio" name="gender" value="Female"> Female<br>
+            <input type="radio" name="gender" value="Other"> Other<br>
+
+            <label>3. Place of Residence</label>
+            <select name="residence" id="residence" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Other Indian State">Other Indian State</option>
+                <option value="Outside India">Outside India</option>
+            </select>
+            <input type="text" name="residence_specify" id="residence_specify" class="specify-input hidden" placeholder="Please specify">
+
+            <label>4. Who are you traveling with?</label>
+            <input type="radio" name="travel_companions" value="Alone" required> Alone<br>
+            <input type="radio" name="travel_companions" value="Friends"> Friends<br>
+            <input type="radio" name="travel_companions" value="Family"> Family<br>
+
+            <div id="travel_companions_extra" class="hidden">
+                <label>4a. Family/Friend Group Size</label>
+                <input type="number" name="group_size" id="group_size" min="1">
+            </div>
+
+            <label>4b. Mode of Transport from Tirupati to Tirumala</label>
+            <input type="radio" name="transport_mode" value="Kalinadak" required> Kalinadak (Walking)<br>
+            <input type="radio" name="transport_mode" value="Government Bus"> Government Bus<br>
+            <input type="radio" name="transport_mode" value="Taxi/Jeep"> Taxi/Jeep<br>
+            <input type="radio" name="transport_mode" value="Mini Bus"> Mini Bus<br>
+            <input type="radio" name="transport_mode" value="Own Vehicle"> Own Vehicle<br>
+
+            <div id="parking_extra" class="hidden">
+                <label>4b(i). Where did you park?</label>
+                <input type="radio" name="parking_location" value="CRO Premises"> CRO Premises<br>
+                <input type="radio" name="parking_location" value="Nearby Road CRO"> Nearby Road CRO<br>
+                <input type="radio" name="parking_location" value="Other"> Other<br>
+                <input type="text" name="parking_location_specify" id="parking_location_specify" class="specify-input hidden" placeholder="Please specify">
+            </div>
+
+            <label>5. Do you have a fair idea about Tirumala?</label>
+            <input type="radio" name="knowledge_tirumala" value="Yes" required> Yes<br>
+            <input type="radio" name="knowledge_tirumala" value="No"> No<br>
+
+            <label>6. Have you visited Tirumala before?</label>
+            <input type="radio" name="visited_before" value="Yes" required> Yes<br>
+            <input type="radio" name="visited_before" value="No"> No<br>
+
+            <label>7. Do you know about services offered at CRO?</label>
+            <input type="radio" name="cro_services" value="Yes" required> Yes<br>
+            <input type="radio" name="cro_services" value="No"> No<br>
+
+            <label>8. Place of Survey</label>
+            <select name="survey_place" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="ARP Online Booking Counter">ARP Online Booking Counter</option>
+                <option value="Near/On the Way to Current Booking Counter">Near/On the Way to Current Booking Counter</option>
+                <option value="Arjitha Seva/Other Seva Counters">Arjitha Seva/Other Seva Counters</option>
+                <option value="Waiting Hall (Inside CRO Building)">Waiting Hall (Inside CRO Building)</option>
+                <option value="Waiting (Between Current Room Bookings and CRO Building)">Waiting (Between Current Room Bookings and CRO Building)</option>
+            </select>
+
+            <label>9. Do you have the following?</label>
+            <input type="radio" name="darshan_accommodation" value="Darshan Only" required> Darshan Only<br>
+            <input type="radio" name="darshan_accommodation" value="Darshan and Accommodation"> Darshan and Accommodation<br>
+            <input type="radio" name="darshan_accommodation" value="No Darshan and Accommodation"> No Darshan and Accommodation<br>
+
+            <label>10. What is your plan for Darshan/Accommodation?</label>
+            <textarea name="darshan_plan" id="darshan_plan" rows="4" required></textarea>
+        </div>
+
+        <div class="section">
+            <h2>Section 2: Purpose of Visit to CRO</h2>
+            <label>11. Main Purpose of Visit to CRO</label>
+            <input type="radio" name="cro_purpose" value="General Enquiry" required> General Enquiry<br>
+            <input type="radio" name="cro_purpose" value="Accommodation"> Accommodation<br>
+            <input type="radio" name="cro_purpose" value="Donor Booking"> Donor Booking<br>
+            <input type="radio" name="cro_purpose" value="Darshan Related"> Darshan Related<br>
+            <input type="radio" name="cro_purpose" value="Floating Crowd"> Floating Crowd<br>
+            <input type="radio" name="cro_purpose" value="General Crowd"> General Crowd<br>
+
+            <div id="accommodation_purpose_extra" class="hidden">
+                <label>11a. Accommodation Purpose</label>
+                <input type="radio" name="accommodation_purpose" value="Registration"> Registration<br>
+                <input type="radio" name="accommodation_purpose" value="Online Booking"> Online Booking<br>
+                <input type="radio" name="accommodation_purpose" value="Allotment (Waiting for Allotment)"> Allotment (Waiting for Allotment)<br>
+            </div>
+
+            <div id="darshan_purpose_extra" class="hidden">
+                <label>11b. Darshan Purpose</label>
+                <input type="radio" name="darshan_purpose" value="Arjitha Seva"> Arjitha Seva<br>
+                <input type="radio" name="darshan_purpose" value="Dip Registration"> Dip Registration<br>
+                <input type="radio" name="darshan_purpose" value="Lucky Dip Waiting"> Lucky Dip Waiting<br>
+            </div>
+
+            <div id="crowd_behavior_extra" class="hidden">
+                <label>12. General Crowd Behavior</label>
+                <input type="radio" name="crowd_behavior" value="Using as Waiting Hall"> Using as Waiting Hall<br>
+                <input type="radio" name="crowd_behavior" value="Do Not Know Where to Stay"> Do Not Know Where to Stay<br>
+                <input type="radio" name="crowd_behavior" value="Enquiry"> Enquiry<br>
+                <input type="radio" name="crowd_behavior" value="Family Waiting"> Family Waiting<br>
+            </div>
+
+            <label>13. How much time did you spend waiting in queues at the CRO?</label>
+            <input type="radio" name="queue_time" value="Less than 15 minutes" required> Less than 15 minutes<br>
+            <input type="radio" name="queue_time" value="15–30 minutes"> 15–30 minutes<br>
+            <input type="radio" name="queue_time" value="30–60 minutes"> 30–60 minutes<br>
+            <input type="radio" name="queue_time" value="More than 60 minutes"> More than 60 minutes<br>
+
+            <label>14. Since how long have you been waiting here?</label>
+            <input type="radio" name="waiting_time" value="Less than 30 minutes" required> Less than 30 minutes<br>
+            <input type="radio" name="waiting_time" value="30 to 60 minutes"> 30 to 60 minutes<br>
+            <input type="radio" name="waiting_time" value="1–4 Hours"> 1–4 Hours<br>
+            <input type="radio" name="waiting_time" value="More than 4 Hours"> More than 4 Hours<br>
+
+            <label>15. How much time was spent receiving service at the CRO counters?</label>
+            <input type="radio" name="service_time" value="Less than 5 minutes" required> Less than 5 minutes<br>
+            <input type="radio" name="service_time" value="5–15 minutes"> 5–15 minutes<br>
+            <input type="radio" name="service_time" value="15–30 minutes"> 15–30 minutes<br>
+            <input type="radio" name="service_time" value="More than 30 minutes"> More than 30 minutes<br>
+
+            <label>16. What was the total time you spent at the CRO for your purpose?</label>
+            <input type="radio" name="total_time_spent" value="Less than 30 minutes" required> Less than 30 minutes<br>
+            <input type="radio" name="total_time_spent" value="30–60 minutes"> 30–60 minutes<br>
+            <input type="radio" name="total_time_spent" value="1–2 hours"> 1–2 hours<br>
+            <input type="radio" name="total_time_spent" value="More than 2 hours"> More than 2 hours<br>
+        </div>
+
+        <div class="section">
+            <h2>Section 3: Feedback and Suggestions</h2>
+            <label>16. What are the challenges faced at CRO? (Select all that apply)</label>
+            <input type="checkbox" name="challenges" value="Long Queues"> Long Queues<br>
+            <input type="checkbox" name="challenges" value="Lack of Clear Information"> Lack of Clear Information<br>
+            <input type="checkbox" name="challenges" value="Congestion"> Congestion<br>
+            <input type="checkbox" name="challenges" value="Insufficient Amenities"> Insufficient Amenities (e.g., seating, water)<br>
+            <input type="checkbox" name="challenges" value="Other"> Other<br>
+            <input type="text" name="challenges_specify" id="challenges_specify" class="specify-input hidden" placeholder="Please specify">
+
+            <label>17. What do you suggest for improvement?</label>
+            <textarea name="suggestions" rows="4" required></textarea>
+
+            <label>18. After going back home, what is your feedback on CRO?</label>
+            <textarea name="post_visit_feedback" rows="4" required></textarea>
+
+            <label>19. Are you using the toilets at CRO?</label>
+            <input type="radio" name="toilet_usage" value="Yes" required> Yes<br>
+            <input type="radio" name="toilet_usage" value="No"> No<br>
+
+            <div id="toilet_feedback_extra" class="hidden">
+                <label>20. Feedback on Toilets</label>
+                <input type="radio" name="toilet_feedback" value="Cleanliness Issues"> Cleanliness Issues<br>
+                <input type="radio" name="toilet_feedback" value="Long Waiting Time"> Long Waiting Time<br>
+                <input type="radio" name="toilet_feedback" value="Insufficient Facilities"> Insufficient Facilities<br>
+                <input type="radio" name="toilet_feedback" value="Poor Maintenance"> Poor Maintenance<br>
+                <input type="radio" name="toilet_feedback" value="Other"> Other<br>
+                <input type="text" name="toilet_feedback_specify" id="toilet_feedback_specify" class="specify-input hidden" placeholder="Please specify">
+            </div>
+
+            <label>21. How would you rate the service efficiency at the CRO counters? (1 to 10)</label>
+            <input type="number" name="service_efficiency_rating" min="1" max="10" required>
+        </div>
+
+        <button type="submit">Submit Survey</button>
+    </form>
+
+    <p>Thank you for your valuable input. Your feedback will enhance the pilgrim experience at Tirumala.</p>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwF15EOsHMKYJT7xxcBQfrWzgBmJO48AfZ8p8DgnFaRA00m2dVU9Q6mw7KdyH92CPVN/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const residenceSelect = document.getElementById('residence');
+        const residenceSpecify = document.getElementById('residence_specify');
+        const travelCompanionsRadios = form.querySelectorAll('input[name="travel_companions"]');
+        const transportModeRadios = form.querySelectorAll('input[name="transport_mode"]');
+        const parkingLocationRadios = form.querySelectorAll('input[name="parking_location"]');
+        const croPurposeRadios = form.querySelectorAll('input[name="cro_purpose"]');
+        const challengesCheckboxes = form.querySelectorAll('input[name="challenges"]');
+        const toiletUsageRadios = form.querySelectorAll('input[name="toilet_usage"]');
+        const toiletFeedbackRadios = form.querySelectorAll('input[name="toilet_feedback"]');
+        const travelCompanionsExtra = document.getElementById('travel_companions_extra');
+        const parkingExtra = document.getElementById('parking_extra');
+        const accommodationPurposeExtra = document.getElementById('accommodation_purpose_extra');
+        const darshanPurposeExtra = document.getElementById('darshan_purpose_extra');
+        const crowdBehaviorExtra = document.getElementById('crowd_behavior_extra');
+        const toiletFeedbackExtra = document.getElementById('toilet_feedback_extra');
+        const parkingLocationSpecify = document.getElementById('parking_location_specify');
+        const challengesSpecify = document.getElementById('challenges_specify');
+        const toiletFeedbackSpecify = document.getElementById('toilet_feedback_specify');
+        const groupSizeInput = document.getElementById('group_size');
+        const darshanPlanTextarea = document.getElementById('darshan_plan');
+
+        // Conditional logic for Question 3 (residence)
+        residenceSelect.addEventListener('change', () => {
+            if (residenceSelect.value === 'Other Indian State' || residenceSelect.value === 'Outside India') {
+                residenceSpecify.classList.remove('hidden');
+                residenceSpecify.setAttribute('required', 'true');
+            } else {
+                residenceSpecify.classList.add('hidden');
+                residenceSpecify.removeAttribute('required');
+                residenceSpecify.value = '';
+            }
+        });
+
+        // Conditional logic for Question 4 (travel companions)
+        travelCompanionsRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Alone') {
+                    travelCompanionsExtra.classList.add('hidden');
+                    groupSizeInput.removeAttribute('required');
+                    groupSizeInput.value = '';
+                } else {
+                    travelCompanionsExtra.classList.remove('hidden');
+                    groupSizeInput.setAttribute('required', 'true');
+                }
+            });
+        });
+
+        // Conditional logic for Question 4b (transport mode)
+        transportModeRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Own Vehicle' || radio.value === 'Mini Bus') {
+                    parkingExtra.classList.remove('hidden');
+                    parkingLocationRadios.forEach(input => input.setAttribute('required', 'true'));
+                } else {
+                    parkingExtra.classList.add('hidden');
+                    parkingLocationRadios.forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                    parkingLocationSpecify.classList.add('hidden');
+                    parkingLocationSpecify.removeAttribute('required');
+                    parkingLocationSpecify.value = '';
+                }
+            });
+        });
+
+        // Conditional logic for Question 4b(i) (parking location)
+        parkingLocationRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Other') {
+                    parkingLocationSpecify.classList.remove('hidden');
+                    parkingLocationSpecify.setAttribute('required', 'true');
+                } else {
+                    parkingLocationSpecify.classList.add('hidden');
+                    parkingLocationSpecify.removeAttribute('required');
+                    parkingLocationSpecify.value = '';
+                }
+            });
+        });
+
+        // Conditional logic for Question 11 (CRO purpose)
+        croPurposeRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Accommodation') {
+                    accommodationPurposeExtra.classList.remove('hidden');
+                    form.querySelectorAll('input[name="accommodation_purpose"]').forEach(input => input.setAttribute('required', 'true'));
+                    darshanPurposeExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="darshan_purpose"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                    crowdBehaviorExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="crowd_behavior"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                } else if (radio.value === 'Darshan Related') {
+                    darshanPurposeExtra.classList.remove('hidden');
+                    form.querySelectorAll('input[name="darshan_purpose"]').forEach(input => input.setAttribute('required', 'true'));
+                    accommodationPurposeExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="accommodation_purpose"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                    crowdBehaviorExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="crowd_behavior"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                } else if (radio.value === 'General Crowd') {
+                    crowdBehaviorExtra.classList.remove('hidden');
+                    form.querySelectorAll('input[name="crowd_behavior"]').forEach(input => input.setAttribute('required', 'true'));
+                    accommodationPurposeExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="accommodation_purpose"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                    darshanPurposeExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="darshan_purpose"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                } else {
+                    accommodationPurposeExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="accommodation_purpose"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                    darshanPurposeExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="darshan_purpose"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                    crowdBehaviorExtra.classList.add('hidden');
+                    form.querySelectorAll('input[name="crowd_behavior"]').forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                }
+            });
+        });
+
+        // Conditional logic for Question 16 (challenges)
+        challengesCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const otherChecked = Array.from(challengesCheckboxes).some(cb => cb.value === 'Other' && cb.checked);
+                if (otherChecked) {
+                    challengesSpecify.classList.remove('hidden');
+                    challengesSpecify.setAttribute('required', 'true');
+                } else {
+                    challengesSpecify.classList.add('hidden');
+                    challengesSpecify.removeAttribute('required');
+                    challengesSpecify.value = '';
+                }
+            });
+        });
+
+        // Conditional logic for Question 19 (toilet usage)
+        toiletUsageRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Yes') {
+                    toiletFeedbackExtra.classList.remove('hidden');
+                    toiletFeedbackRadios.forEach(input => input.setAttribute('required', 'true'));
+                    toiletFeedbackSpecify.classList.add('hidden');
+                    toiletFeedbackSpecify.removeAttribute('required');
+                    toiletFeedbackSpecify.value = '';
+                } else {
+                    toiletFeedbackExtra.classList.add('hidden');
+                    toiletFeedbackRadios.forEach(input => {
+                        input.removeAttribute('required');
+                        input.checked = false;
+                    });
+                    toiletFeedbackSpecify.classList.add('hidden');
+                    toiletFeedbackSpecify.removeAttribute('required');
+                    toiletFeedbackSpecify.value = '';
+                }
+            });
+        });
+
+        // Conditional logic for Question 20 (toilet feedback)
+        toiletFeedbackRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Other') {
+                    toiletFeedbackSpecify.classList.remove('hidden');
+                    toiletFeedbackSpecify.setAttribute('required', 'true');
+                } else {
+                    toiletFeedbackSpecify.classList.add('hidden');
+                    toiletFeedbackSpecify.removeAttribute('required');
+                    toiletFeedbackSpecify.value = '';
+                }
+            });
+        });
+
+        // Form submission logic
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // Validate required fields
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            requiredFields.forEach(field => {
+                if (!field.value && !field.classList.contains('hidden')) {
+                    isValid = false;
+                    console.error(`Validation failed: ${field.name} is required but empty`);
+                }
+            });
+
+            // Validate Question 16 (challenges) for at least one checkbox
+            const challengesChecked = form.querySelectorAll('input[name="challenges"]:checked');
+            if (challengesChecked.length === 0) {
+                isValid = false;
+                alert('Please select at least one option for Question 16 (Challenges faced at CRO).');
+                console.error('Validation failed: At least one challenge must be selected');
+            }
+
+            // Validate sub-questions
+            const travelCompanionsValue = form.querySelector('input[name="travel_companions"]:checked')?.value;
+            if (travelCompanionsValue && travelCompanionsValue !== 'Alone' && !groupSizeInput.value) {
+                isValid = false;
+                alert('Please provide a group size for Question 4a.');
+                console.error('Validation failed: Group size is required for non-Alone travel companions');
+            }
+
+            const croPurposeValue = form.querySelector('input[name="cro_purpose"]:checked')?.value;
+            if (croPurposeValue === 'Accommodation' && !form.querySelector('input[name="accommodation_purpose"]:checked')) {
+                isValid = false;
+                alert('Please select an option for Question 11a (Accommodation Purpose).');
+                console.error('Validation failed: Accommodation purpose is required');
+            }
+            if (croPurposeValue === 'Darshan Related' && !form.querySelector('input[name="darshan_purpose"]:checked')) {
+                isValid = false;
+                alert('Please select an option for Question 11b (Darshan Purpose).');
+                console.error('Validation failed: Darshan purpose is required');
+            }
+            if (croPurposeValue === 'General Crowd' && !form.querySelector('input[name="crowd_behavior"]:checked')) {
+                isValid = false;
+                alert('Please select an option for Question 12 (General Crowd Behavior).');
+                console.error('Validation failed: General crowd behavior is required');
+            }
+
+            const toiletUsageValue = form.querySelector('input[name="toilet_usage"]:checked')?.value;
+            if (toiletUsageValue === 'Yes' && !form.querySelector('input[name="toilet_feedback"]:checked')) {
+                isValid = false;
+                alert('Please select an option for Question 20 (Toilet Feedback).');
+                console.error('Validation failed: Toilet feedback is required when toilet usage is Yes');
+            }
+
+            if (!isValid) {
+                console.error('Form submission aborted due to validation errors');
+                return;
+            }
+
+            // Prepare form data
+            const formData = new FormData(form);
+
+            // Log form data for debugging
+            console.log('Form Data to be sent:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+
+            // Handle challenges (combine checkboxes, include specify)
+            const challenges = Array.from(challengesChecked).map(cb => {
+                return cb.value === 'Other' && challengesSpecify.value ? challengesSpecify.value : cb.value;
+            }).join(', ');
+            formData.set('challenges', challenges);
+
+            // Handle conditional fields
+            if (residenceSelect.value === 'Other Indian State' || residenceSelect.value === 'Outside India') {
+                if (residenceSpecify.value) {
+                    formData.set('residence', residenceSpecify.value);
+                }
+            }
+
+            const parkingLocationValue = form.querySelector('input[name="parking_location"]:checked')?.value;
+            if (parkingLocationValue === 'Other' && parkingLocationSpecify.value) {
+                formData.set('parking_location', parkingLocationSpecify.value);
+            }
+
+            const toiletFeedbackValue = form.querySelector('input[name="toilet_feedback"]:checked')?.value;
+            if (toiletFeedbackValue === 'Other' && toiletFeedbackSpecify.value) {
+                formData.set('toilet_feedback', toiletFeedbackSpecify.value);
+            }
+
+            // Ensure optional fields are included (empty if not applicable)
+            if (travelCompanionsValue === 'Alone') {
+                formData.set('group_size', '');
+            }
+            if (croPurposeValue !== 'Accommodation') {
+                formData.set('accommodation_purpose', '');
+            }
+            if (croPurposeValue !== 'Darshan Related') {
+                formData.set('darshan_purpose', '');
+            }
+            if (croPurposeValue !== 'General Crowd') {
+                formData.set('crowd_behavior', '');
+            }
+            if (toiletUsageValue !== 'Yes') {
+                formData.set('toilet_feedback', '');
+            }
+
+            // Submit form data
+            console.log('Submitting form to:', scriptURL);
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    console.log('Fetch response status:', response.status);
+                    if (response.ok) {
+                        return response.text().then(text => {
+                            console.log('Response text:', text);
+                            alert('Thank you for your submission!');
+                            form.reset();
+                            // Reset conditional sections
+                            residenceSpecify.classList.add('hidden');
+                            residenceSpecify.removeAttribute('required');
+                            travelCompanionsExtra.classList.add('hidden');
+                            groupSizeInput.removeAttribute('required');
+                            parkingExtra.classList.add('hidden');
+                            parkingLocationRadios.forEach(input => {
+                                input.removeAttribute('required');
+                                input.checked = false;
+                            });
+                            parkingLocationSpecify.classList.add('hidden');
+                            parkingLocationSpecify.removeAttribute('required');
+                            accommodationPurposeExtra.classList.add('hidden');
+                            form.querySelectorAll('input[name="accommodation_purpose"]').forEach(input => {
+                                input.removeAttribute('required');
+                                input.checked = false;
+                            });
+                            darshanPurposeExtra.classList.add('hidden');
+                            form.querySelectorAll('input[name="darshan_purpose"]').forEach(input => {
+                                input.removeAttribute('required');
+                                input.checked = false;
+                            });
+                            crowdBehaviorExtra.classList.add('hidden');
+                            form.querySelectorAll('input[name="crowd_behavior"]').forEach(input => {
+                                input.removeAttribute('required');
+                                input.checked = false;
+                            });
+                            challengesSpecify.classList.add('hidden');
+                            challengesSpecify.removeAttribute('required');
+                            toiletFeedbackExtra.classList.add('hidden');
+                            toiletFeedbackRadios.forEach(input => {
+                                input.removeAttribute('required');
+                                input.checked = false;
+                            });
+                            toiletFeedbackSpecify.classList.add('hidden');
+                            toiletFeedbackSpecify.removeAttribute('required');
+                            // Clear textareas
+                            form.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+                        });
+                    } else {
+                        throw new Error(`Network response was not ok: ${response.status}`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Submission error:', error);
+                    alert('There was an error submitting your form. Please check the console for details and try again.');
+                });
+        });
+    </script>
+</body>
+</html>
